@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html ng-app="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <title>奇迹旅行－日历</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="Shortcut Icon" href="//r.uzaicdn.com/favicon-sj.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="calendar.css" />
+</head>
+<body ng-controller="">
+    <div class="uzai-header">
+        <i class="iconfont icon-back" ng-click="backpage();"></i>
+        <b>选择日期</b>
+    </div>
+
+    <div class="uzai-container">
+        <!--日历部分-->
+        <div class="uzai-calender">
+            <div class="red-bg">
+
+                <div class="switch-btn">
+                    <b class="left"></b>
+                    <b class="right"></b>
+                    <div class="center">
+                        <i class="circle"></i>
+                        <p>
+                            <span class="month"></span>
+                            <span class="year">
+                                    <b>月</b><br />
+                                    <b></b>
+                                </span>
+                        </p>
+                        <i class="circle"></i>
+                    </div>
+                </div>
+
+                <i class="triangles"></i>
+                <!--星期-->
+                <div class="calendar-week">
+                    <ul class="week-list"></ul>
+                </div>
+
+            </div>
+            <div class="container-center">
+                <div class="device">
+                    <a class="arrow-left" href="#"></a>
+                    <a class="arrow-right" href="#"></a>
+                    <div class="swiper-container container">
+                        <div class="swiper-wrapper box-center swiper" id="list">
+
+                        </div>
+                    </div>
+                    <div class="pagination"></div>
+                </div>
+                <!--库存-->
+                <div class="stock zHide"><b class="m"></b>月<b class="d"></b>日出发仅剩<b class="nums">  </b>个余位</div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="http://r03.uzaicdn.com/content/hybrid/scripts/common/font.js"></script>
+    <script src="calendar.js"></script>
+</body>
+
+</html>
