@@ -379,6 +379,8 @@
     sellOut("[data-time='2016-11-20']",1990);
     sellOut("[data-time='2016-12-15']",1990);
 
+    // sellOut(+'[data-time='+'2016-12-15'+']',1990);
+
     /**
      * @sellHot   正在热卖中。。。。。
      */
@@ -408,6 +410,7 @@
         for(var i=0,len=_on.length;i<len;i++){
             _on[i].index = i;
             _on[i].onclick = function(){
+                document.getElementsByClassName('uzai-numbers')[0].style.display = 'block';
                 for(var i=0;i<_on.length;i++){
                     // if(_on[i].className.match(new RegExp('(\\s|^)' + 'cur' + '(\\s|$)'))){
                     //     _on[i].className = _on[i].className.replace(new RegExp('(\\s|^)' + 'cur' + '(\\s|$)'), '');
@@ -600,9 +603,6 @@
                             };
                         })(i);
                     }
-
-
-
                 }
             };
             return CreateCalendar;
@@ -620,10 +620,41 @@
         item_width: 'auto',
         threshold: 10
     });
+
+
+    //  暂时不用－－－自动轮播的时候可以开启
+    /*var _item = document.getElementsByClassName('item'),
+        _len = _item.length;
+    setInterval(function(){
+        swiper.next();
+        if(_item[_len - 1].classList.contains('active')){
+            _item[_len - 1].classList.remove('active');
+            _item[0].classList.add('active');
+            swiper.go(0);
+        }
+    },3000);
+    var htmls = '';
+    for(var i=0;i<_len;i++){
+        htmls += '<b class="yuan"></b>';
+    }
+    var _pags = document.getElementsByClassName('pagination')[0];
+    _pags.innerHTML = htmls;
+
+    var _yuan = document.getElementsByClassName('yuan');
+    */
     swiper.on('swiped', function(prev, current){
         changeMonth();
-    });
 
+        //  暂时不用－－－自动轮播的时候可以开启
+        /*for(var i=0;i<_len;i++){
+            _yuan[i].classList.remove('hehe');
+            if(_item[i].classList.contains('active')){
+                _yuan[i].classList.add('hehe');
+            }
+        }*/
+
+    });
+    
     /**
      * @$boxCenters 动态修改calendar-box的width
      */
@@ -635,6 +666,7 @@
 
     /**
      *@changeMonth  函数作用是当日期发生改变的时候 title提示月份 中间和左右随之改变
+     *@changeMonth  函数title的改变主要是是根据class为active的来查询的，不需要和后台牵连；
      */
 
     function changeMonth(){
@@ -654,13 +686,15 @@
                 _ary = _curDay.split('-'),
                 _month = document.getElementsByClassName('switch-btn')[0].getElementsByClassName('center')[0].getElementsByClassName('month')[0],
                 _year = _month.nextElementSibling;
+            document.getElementsByClassName('center')[0].style.display = 'block';               
             _month.innerHTML = _ary[1];
-            _year.lastElementChild.innerHTML = _ary[0];               
+            _year.lastElementChild.innerHTML = _ary[0];
         }else{
             var _curDay = _li[0].getAttribute('data-time'),
                 _ary = _curDay.split('-'),
                 _month = document.getElementsByClassName('switch-btn')[0].getElementsByClassName('center')[0].getElementsByClassName('month')[0],
                 _year = _month.nextElementSibling;
+            document.getElementsByClassName('center')[0].style.display = 'block';  
             _month.innerHTML = _ary[1];
             _year.lastElementChild.innerHTML = _ary[0];         
         }
