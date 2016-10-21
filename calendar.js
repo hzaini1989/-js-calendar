@@ -437,6 +437,7 @@
                     this.changeTitle();
                     this.addWeekColor();
                     this.getDateCur();
+                    this.addOrdel('num1','num2','num3','hover','sure');
                 },
                 addWeekColor:function(){  //    周六日 title
                     var _weekList = document.getElementsByClassName('week-list')[0],
@@ -523,6 +524,85 @@
                             changeMonth();
                         },500);
                     };
+                },
+                addOrdel:function(num1,num2,num3,hovers,sures){    //人数计算
+                    //
+                    var _surplus = 1,
+                        _allNums = 10;  //总共人数-----后台传入
+
+                    var _num3 = document.getElementsByClassName(num3),
+                        _num2 = document.getElementsByClassName(num2),
+                        _num1 = document.getElementsByClassName(num1);
+
+                    for(var i=0;i<_num3.length;i++){
+                        !(function(i){
+                            _num3[i].onclick = function(){
+                                var _japan = 0;
+                                for(var j=0;j<_num2.length;j++){
+                                    _japan += parseInt(_num2[j].innerHTML);
+                                }
+                                _surplus  = _allNums - _japan;
+                                var _val = parseInt(_num2[i].innerHTML);
+                                if(_surplus > 0){                        
+                                    var _ands = _val + 1;
+                                    _num2[i].innerHTML = _ands;
+                                    for(var m=0;m<_num1.length;m++){
+                                        _num1[m].classList.remove(hovers);
+                                    }
+                                    for(var m=0;m<_num3.length;m++){
+                                        _num3[m].classList.remove(hovers);
+                                    }
+                                    _num3[i].classList.add(hovers);
+                                    _num1[i].classList.add(sures);
+                                    if(_surplus == 1){
+                                        for(var m=0;m<_num3.length;m++){
+                                            _num3[m].classList.remove(hovers);
+                                            _num3[m].classList.remove(sures);
+                                        }
+                                    }
+
+                                }else{
+                                    for(var m=0;m<_num3.length;m++){
+                                        _num3[i].classList.remove(hovers);
+                                        _num3[i].classList.remove(sures);
+                                    }
+                                }
+                            };
+                        })(i);
+                    }
+
+                    for(var i=0;i<_num1.length;i++){
+                        !(function(i){
+                            _num1[i].onclick = function(){
+                                if(_num1[i].classList.contains(sures)){
+                                    for(var j=0;j<_num3.length;j++){
+                                        _num3[j].classList.add(sures);
+                                    }
+                                    var _val = _num2[i].innerHTML;
+
+                                    if(!(parseInt(_val) <= 1) ){
+                                        var _adds = _val-1;
+                                        _num2[i].innerHTML = _adds;
+                                        for(var m=0;m<_num1.length;m++){
+                                            _num1[m].classList.remove(hovers);
+                                        }
+                                        for(var m=0;m<_num3.length;m++){
+                                            _num3[m].classList.remove(hovers);
+                                        }
+                                        _num1[i].classList.add(hovers);
+                                    }else{
+                                        _num1[i].classList.remove(hovers);
+                                        _num1[i].classList.remove(sures);
+                                        _num2[i].innerHTML = '0';
+                                    }
+
+                                }
+                            };
+                        })(i);
+                    }
+
+
+
                 }
             };
             return CreateCalendar;
